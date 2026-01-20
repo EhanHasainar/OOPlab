@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+interface Calc {
+    void calculate(int a, int b, int c);
+}
+
+abstract class Show {
+    abstract void display();
+}
+
+class Result extends Show implements Calc {
+    int sum, prod, max, min;
+    double avg;
+
+    public void calculate(int a, int b, int c) {
+        sum = a + b + c;
+        prod = a * b * c;
+        avg = sum / 3.0;
+
+        max = a;
+        if (b > max) max = b;
+        if (c > max) max = c;
+
+        min = a;
+        if (b < min) min = b;
+        if (c < min) min = c;
+    }
+
+    void display() {
+        System.out.println("Sum = " + sum);
+        System.out.println("Average = " + avg);
+        System.out.println("Product = " + prod);
+        System.out.println("Largest = " + max);
+        System.out.println("Smallest = " + min);
+    }
+}
+
+public class Q3 {
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+
+        int x = s.nextInt();
+        int y = s.nextInt();
+        int z = s.nextInt();
+
+        Result r = new Result();
+        r.calculate(x, y, z);
+        r.display();
+    }
+}
